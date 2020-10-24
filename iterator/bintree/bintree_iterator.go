@@ -4,23 +4,23 @@ import (
 	"errors"
 )
 
-type binTreeIterator struct {
+type BinTreeIterator struct {
 	stack []stackElem
 }
 
-func NewBinTreeIterator(tree BinaryTree) binTreeIterator {
+func NewBinTreeIterator(tree BinaryTree) BinTreeIterator {
 	var stack []stackElem
 	if tree.Root != nil {
 		stack = append(stack, stackElem{*tree.Root, false})
 	}
-	return binTreeIterator{stack}
+	return BinTreeIterator{stack}
 }
 
-func (iter *binTreeIterator) hasNext() bool {
+func (iter *BinTreeIterator) hasNext() bool {
 	return len(iter.stack) > 0
 }
 
-func (iter *binTreeIterator) getNext() (int, error) {
+func (iter *BinTreeIterator) getNext() (int, error) {
 	if !iter.hasNext() {
 		return -1, errors.New("Tree is empty.")
 	}

@@ -5,6 +5,11 @@ import (
 	"testing"
 )
 
+type testEntry struct {
+	tree          BinaryTree
+	expectedSlice []int
+}
+
 func slicesEqual(slice1 []int, slice2 []int) bool {
 	if len(slice1) != len(slice2) {
 		return false
@@ -17,9 +22,7 @@ func slicesEqual(slice1 []int, slice2 []int) bool {
 	return true
 }
 
-func TestInOrderTraversal(t *testing.T) {
-
-	// Set up.
+func getTestEntries() []testEntry {
 	tree0 := BinaryTree{nil}
 	var expectedSlice0 []int = nil
 
@@ -49,30 +52,46 @@ func TestInOrderTraversal(t *testing.T) {
 	tree5 := BinaryTree{&root5}
 	expectedSlice5 := []int{5, 6, 7}
 
-	var tests = []struct {
-		tree          BinaryTree
-		expectedSlice []int
-	}{
+	var tests = []testEntry{
 		{tree0, expectedSlice0},
 		{tree1, expectedSlice1},
 		{tree2, expectedSlice2},
 		{tree3, expectedSlice3},
 		{tree4, expectedSlice4},
 		{tree5, expectedSlice5}}
+	return tests
+}
+
+func TestTraversals(t *testing.T) {
+
+	// Set up.
+	tests := getTestEntries()
 
 	// Execute test cases.
-	var test_name string
+	var testName string
 	for i, test := range tests {
-		test_name = fmt.Sprintf("TestInOrderTraversalIterative-%d", i)
-		t.Run(test_name, func(t *testing.T) {
+		testName = fmt.Sprintf("TestInOrderTraversalIterative-%d", i)
+		t.Run(testName, func(t *testing.T) {
 			actual := test.tree.InOrderTraversalIterative()
 			if !slicesEqual(actual, test.expectedSlice) {
 				t.Fatal("Expected", test.expectedSlice, "Actual", actual)
 			}
 		})
-		test_name = fmt.Sprintf("TestInOrderTraversalRecursive-%d", i)
-		t.Run(test_name, func(t *testing.T) {
+		testName = fmt.Sprintf("TestInOrderTraversalRecursive-%d", i)
+		t.Run(testName, func(t *testing.T) {
 			actual := test.tree.InOrderTraversalRecursive()
+			if !slicesEqual(actual, test.expectedSlice) {
+				t.Fatal("Expected", test.expectedSlice, "Actual", actual)
+			}
+		})
+		testName = fmt.Sprintf("TestBinTreeIterator-%d", i)
+		t.Run(testName, func(t *testing.T) {
+			iter := NewBinTreeIterator(test.tree)
+			var actual []int
+			for iter.hasNext() {
+				nextVal, _ := iter.getNext()
+				actual = append(actual, nextVal)
+			}
 			if !slicesEqual(actual, test.expectedSlice) {
 				t.Fatal("Expected", test.expectedSlice, "Actual", actual)
 			}
