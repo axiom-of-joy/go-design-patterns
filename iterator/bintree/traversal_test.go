@@ -88,8 +88,8 @@ func TestTraversals(t *testing.T) {
 		t.Run(testName, func(t *testing.T) {
 			iter := NewBinTreeIterator(test.tree)
 			var actual []int
-			for iter.hasNext() {
-				nextVal, _ := iter.getNext()
+			for iter.HasNext() {
+				nextVal, _ := iter.GetNext()
 				actual = append(actual, nextVal)
 			}
 			if !slicesEqual(actual, test.expectedSlice) {

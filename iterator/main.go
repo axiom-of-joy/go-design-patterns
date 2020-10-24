@@ -6,10 +6,13 @@ import (
 )
 
 func main() {
-	//	root := bintree.BinaryTreeNode{nil, nil, 1}
-	//	root.Left = &bintree.BinaryTreeNode{nil, nil, 0}
-	var tree bintree.BinaryTree
-	//	tree := bintree.BinaryTree{&root}
-	vals := tree.InOrderTraversalIterative()
-	fmt.Println(vals)
+	root := bintree.BinaryTreeNode{nil, nil, 3}
+	root.Left = &bintree.BinaryTreeNode{nil, nil, 1}
+	root.Left.Right = &bintree.BinaryTreeNode{nil, nil, 2}
+	tree := bintree.BinaryTree{&root}
+	iter := bintree.NewBinTreeIterator(tree)
+	for iter.HasNext() {
+		nextVal, _ := iter.GetNext()
+		fmt.Printf("%d", nextVal)
+	}
 }

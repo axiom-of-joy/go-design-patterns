@@ -16,13 +16,13 @@ func NewBinTreeIterator(tree BinaryTree) BinTreeIterator {
 	return BinTreeIterator{stack}
 }
 
-func (iter *BinTreeIterator) hasNext() bool {
+func (iter *BinTreeIterator) HasNext() bool {
 	return len(iter.stack) > 0
 }
 
-func (iter *BinTreeIterator) getNext() (int, error) {
-	if !iter.hasNext() {
-		return -1, errors.New("Tree is empty.")
+func (iter *BinTreeIterator) GetNext() (int, error) {
+	if !iter.HasNext() {
+		return -1, errors.New("Cannot GetNext from empty iterator.")
 	}
 	foundNext := false
 	var nextVal int
