@@ -1,6 +1,6 @@
 package iterator
 
-type iterator interface {
+type Iterator interface {
 	hasNext() bool
 	getNext() int
 }

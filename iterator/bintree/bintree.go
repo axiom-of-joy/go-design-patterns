@@ -1,4 +1,4 @@
-package binTree
+package bintree
 
 type BinaryTreeNode struct {
 	Left  *BinaryTreeNode
@@ -14,4 +14,3 @@ type stackElem struct {
 	node    BinaryTreeNode
 	visited bool
 }
-

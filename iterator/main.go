@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
-	"go-design-patterns/iterator/binTree"
+	"go-design-patterns/iterator/bintree"
 )
 
 func main() {
-	//	root := binTree.BinaryTreeNode{nil, nil, 1}
-	//	root.Left = &binTree.BinaryTreeNode{nil, nil, 0}
-	var tree binTree.BinaryTree
-	//	tree := binTree.BinaryTree{&root}
+	//	root := bintree.BinaryTreeNode{nil, nil, 1}
+	//	root.Left = &bintree.BinaryTreeNode{nil, nil, 0}
+	var tree bintree.BinaryTree
+	//	tree := bintree.BinaryTree{&root}
 	vals := tree.InOrderTraversalIterative()
 	fmt.Println(vals)
 }

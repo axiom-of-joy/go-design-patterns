@@ -1,6 +1,9 @@
 package collection
 
-type collection interface {
-	create_iterator() iterator
-}
+import (
+	"go-design-patterns/iterator/iterator"
+)
 
+type collection interface {
+	createIterator() iterator.Iterator
+}
