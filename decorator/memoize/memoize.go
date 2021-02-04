@@ -3,7 +3,7 @@ package memoize
 import "time"
 
 type f func(int) int
-type memo map[int] int
+type memo map[int]int
 
 func add_to_memo(x int, y int, m memo) {
 	m[x] = y

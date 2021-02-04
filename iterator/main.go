@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"go-design-patterns/iterator/bintree"
-
 )
 
 func main() {
